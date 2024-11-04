@@ -4,7 +4,7 @@ export enum BulletType {
   Blank
 }
 
-export interface BulletItem {
+export interface LoadedBullet {
   type: BulletType
   used: boolean
 }
