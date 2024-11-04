@@ -12,12 +12,12 @@ const Chamber = (props: ChamberProps): JSX.Element => {
   const sum = useMemo(() => live + blank, [live, blank])
   const [bulletList, setBulletList] = useState<LoadedBullet[]>([])
 
-  const curLive = useMemo(
-    () => bulletList.filter((item) => item.type === BulletType.Live).length,
+  const lastLive = useMemo(
+    () => live - bulletList.filter((item) => item.type === BulletType.Live && item.used).length,
     [bulletList]
   )
-  const curBlank = useMemo(
-    () => bulletList.filter((item) => item.type === BulletType.Blank).length,
+  const lastBlank = useMemo(
+    () => blank - bulletList.filter((item) => item.type === BulletType.Blank && item.used).length,
     [bulletList]
   )
 
@@ -51,9 +51,6 @@ const Chamber = (props: ChamberProps): JSX.Element => {
 
   return (
     <div>
-      <span>{curLive}</span>
-      <span>{curBlank}</span>
-      <span>{sum}</span>
       {bulletList.map((item, index) => (
         <Fragment key={index}>
           <Bullet
@@ -68,6 +65,9 @@ const Chamber = (props: ChamberProps): JSX.Element => {
           {index === curIndex ? <div onClick={onFire}>fire</div> : null}
         </Fragment>
       ))}
+      <div>
+        剩余子弹数：<span>{lastLive}</span> + <span>{lastBlank}</span>
+      </div>
     </div>
   )
 }
