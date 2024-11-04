@@ -1,0 +1,25 @@
+.chamber {
+  display: flex;
+}
+
+.bulletItem {
+  display: flex;
+}
+
+.divider {
+  width: 1px;
+  content: '';
+  background-color: white;
+}
+
+.liveCount {
+  color: red
+}
+
+.blankCount {
+  color: blue
+}
+
+.unknownCount {
+  color: green
+}

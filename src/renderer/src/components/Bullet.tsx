@@ -1,4 +1,5 @@
 import { BulletType } from '@renderer/type'
+import styles from './bullet.module.css'
 
 interface BulletProps {
   onChange: (type: BulletType) => void
@@ -6,9 +7,9 @@ interface BulletProps {
 }
 
 const bulletImgMap = {
-  [BulletType.Live]: 'live.png',
-  [BulletType.Blank]: 'blank.png',
-  [BulletType.Unknown]: 'green.png'
+  [BulletType.Live]: '/src/assets/red.png',
+  [BulletType.Blank]: '/src/assets/blue.png',
+  [BulletType.Unknown]: '/src/assets/green.png'
 }
 
 const Bullet = (props: BulletProps): JSX.Element => {
@@ -31,7 +32,7 @@ const Bullet = (props: BulletProps): JSX.Element => {
   }
 
   return (
-    <div onClick={onClick}>
+    <div className={styles.bullet} onClick={onClick}>
       <img src={bulletImgMap[type]} />
     </div>
   )
