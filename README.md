@@ -1,6 +1,6 @@
-# devil-counter
+# buckshot-logger
 
-An Electron application with React and TypeScript
+A logger for Buckshot Roulette
 
 ## Recommended IDE Setup
 
