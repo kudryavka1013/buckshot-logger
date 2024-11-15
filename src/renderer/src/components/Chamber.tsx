@@ -12,26 +12,11 @@ const Chamber = (props: ChamberProps): JSX.Element => {
   const sum = useMemo(() => live + blank, [live, blank])
   const [bulletList, setBulletList] = useState<LoadedBullet[]>([])
 
-  const lastLive = useMemo(
-    () => live - bulletList.filter((item) => item.type === BulletType.Live && item.used).length,
-    [bulletList]
-  )
-  const lastBlank = useMemo(
-    () => blank - bulletList.filter((item) => item.type === BulletType.Blank && item.used).length,
-    [bulletList]
-  )
-  const labelLive = useMemo(
-    () => bulletList.filter((item) => item.type === BulletType.Live && !item.used).length,
-    [bulletList]
-  )
-  const labelBlank = useMemo(
-    () => bulletList.filter((item) => item.type === BulletType.Blank && !item.used).length,
-    [bulletList]
-  )
-  const labelUnknown = useMemo(
-    () => bulletList.filter((item) => item.type === BulletType.Unknown && !item.used).length,
-    [bulletList]
-  )
+  const lastLive = useMemo(() => live - bulletList.filter((item) => item.type === BulletType.Live && item.used).length, [bulletList])
+  const lastBlank = useMemo(() => blank - bulletList.filter((item) => item.type === BulletType.Blank && item.used).length, [bulletList])
+  const labelLive = useMemo(() => bulletList.filter((item) => item.type === BulletType.Live && !item.used).length, [bulletList])
+  const labelBlank = useMemo(() => bulletList.filter((item) => item.type === BulletType.Blank && !item.used).length, [bulletList])
+  const labelUnknown = useMemo(() => bulletList.filter((item) => item.type === BulletType.Unknown && !item.used).length, [bulletList])
 
   const curIndex = useMemo(() => bulletList.findIndex((item) => !item.used), [bulletList])
 

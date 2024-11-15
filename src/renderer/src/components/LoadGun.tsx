@@ -1,5 +1,42 @@
 import { useState } from 'react'
 import styles from './loadGun.module.css'
+
+interface SelectorItemProps {
+  index: number
+  hover: boolean
+  onClick: (index: number) => void
+  onHover: (value: number | null) => void
+}
+
+const SelectorItem = (props: SelectorItemProps): JSX.Element => {
+  const { index, onClick } = props
+  return <div onClick={() => onClick(index)}>A</div>
+}
+
+const Selector = (props: { onClick: () => void }): JSX.Element => {
+  const { onClick } = props
+  const [value, setValue] = useState(0)
+  const [hoverValue, setHoverValue] = useState<number | null>(null)
+
+  const onSelect = (index: number): void => {
+    setValue(index)
+  }
+
+  const onHover = (value: number | null): void => {
+    setHoverValue(value)
+  }
+
+  return (
+    <div>
+      {Array(5)
+        .fill(0)
+        .map((item, index) => (
+          <SelectorItem key={item} index={index} hover={!!hoverValue && index <= hoverValue} onClick={onSelect} onHover={onHover} />
+        ))}
+    </div>
+  )
+}
+
 interface BulletsProps {
   onConfirm: (data: { live: number; blank: number }) => void
   onReset: () => void
